@@ -17,17 +17,14 @@ import LeftDesign from "../assets/leftdesign.svg";
 
 
 const ProjectsPage = () => {
-    // Step 1: State management for form inputs
     const [projectName, setProjectName] = useState('');
     const [authors, setAuthors] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
     
-     // New state for delete functionality
      const [projects, setProjects] = useState([]);
      const [selectedProjectForDeletion, setSelectedProjectForDeletion] = useState('');
 
-     // Fetch projects for deletion dropdown
     useEffect(() => {
         const fetchProjects = async () => {
             try {
@@ -43,21 +40,17 @@ const ProjectsPage = () => {
         fetchProjects();
     }, []);
 
-    // Step 2: Form submission handler
     const handleSubmit = async (event: any) => {
-        event.preventDefault(); // Prevent default form submission behavior
+        event.preventDefault(); 
       
-        // Basic validation to check if all fields are filled
         if (!projectName.trim() || !authors.trim() || !description.trim() || !category) {
           alert('Please fill in all fields.');
-          return; // Exit the function if validation fails
+          return; 
         }
       
-        // Form data to be sent
         const projectData = { projectName, authors, description, category };
       
         try {
-          // Send data to your backend
           const response = await fetch('http://35.185.209.10:5000/projects', {
             method: 'POST',
             headers: {
@@ -67,15 +60,12 @@ const ProjectsPage = () => {
           });
       
           if (response.ok) {
-            // Handle success case
             alert('Project added successfully');
-            // Optionally reset form fields here
             setProjectName('');
             setAuthors('');
             setDescription('')
             setCategory('');
           } else {
-            // Handle errors
             alert('Failed to add project. Please try again.');
           }
         } catch (error) {
@@ -84,7 +74,6 @@ const ProjectsPage = () => {
         }
       };
 
-      // New handleDelete function
     const handleDelete = async (event) => {
         event.preventDefault();
 
