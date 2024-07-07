@@ -28,7 +28,7 @@ const ProjectsPage = () => {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await fetch('http://35.185.209.10:5000/projects');
+                const response = await fetch('https://gdscucdavis.com/projects');
                 if (!response.ok) throw new Error('Network response was not ok.');
                 const projects = await response.json();
                 setProjects(projects.map(({ _id, projectName }) => ({ _id, projectName })));
@@ -51,7 +51,7 @@ const ProjectsPage = () => {
         const projectData = { projectName, authors, description, category };
       
         try {
-          const response = await fetch('http://35.185.209.10:5000/projects', {
+          const response = await fetch('https://gdscucdavis.com/projects', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ const ProjectsPage = () => {
         }
 
         try {
-            const response = await fetch(`http://35.185.209.10:5000/projects/${selectedProjectForDeletion}`, {
+            const response = await fetch(`https://gdscucdavis.com/projects/${selectedProjectForDeletion}`, {
                 method: 'DELETE',
             });
 
